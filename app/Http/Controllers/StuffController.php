@@ -47,4 +47,24 @@ class StuffController extends Controller
             return response()->json(['error' => $err->getMessage()], 500);
         }
     }
+
+   public function delete($id)
+   {
+    try {
+        $this->stuffService->destroy($id);
+        return response()->json(['message' => 'Stuff deleted successfully'], 200);
+    } catch (\Exception $err) {
+        return response()->json(['error' => $err->getMessage()], 500);
+    }
+   }
+
+   public function show($id)
+   {
+    try {
+        $stuffs = $this->stuffService->show($id);
+        return response()->json(new StuffResource($stuffs), 200);
+    } catch (\Exception $err) {
+        return response()->json(['error' => $err->getMessage()], 500);
+    }
+   }
 }

@@ -21,4 +21,11 @@ $router->group(['prefix' => 'stuffs'], function () use ($router) {
     $router->get('/','StuffController@index');
     $router->post('/','StuffController@store');
     $router->patch('/{id}', 'StuffController@update');
+    $router->delete('/{id}', 'StuffController@delete');
+    $router->get('/{id}', 'StuffController@show');
+});
+
+$router->group(['prefix' => 'users'], function () use ($router) {
+    $router->get('/','UserController@index');
+    $router->post('/','UserController@store');
 });
