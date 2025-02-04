@@ -10,6 +10,8 @@ class UserRepository
         return User::all();
     }
 
+    
+
     public function storeNewUser(array $data) {
         return User::create($data);
     }

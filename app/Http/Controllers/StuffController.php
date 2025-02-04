@@ -67,4 +67,34 @@ class StuffController extends Controller
         return response()->json(['error' => $err->getMessage()], 500);
     }
    }
+
+   public function trash ()
+   {
+    try {
+        $stuffs = $this->stuffService->trash();
+        return response()->json(StuffResource::collection($stuffs), 200);
+    } catch (\Exception $err) {
+        return response()->json(['error' => $err->getMessage()], 500);
+    }
+   }
+
+   public function restore($id) 
+   {
+    try {
+        $stuff = $this->stuffService->restore($id);
+        return response()->json(new StuffResource($stuff), 200);
+    } catch (\Exception $err) {
+        return response()->json(['error' => $err->getMessage()], 500);
+    }
+   }
+
+   public function deletePermanent ($id)
+   {
+    try{
+        $delete = $this->stuffService->permanentDelete($id);
+        return response()->json("deleted", 200);
+    } catch (\Exception $err) {
+        return response()->json(['error' => $err->getMessage()], 500);
+    }
+   }
 }

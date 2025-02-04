@@ -72,13 +72,15 @@ $app->configure('app');
 |
 */
 
+$app->configure('jwt');
+
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +94,7 @@ $app->configure('app');
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
@@ -112,7 +114,12 @@ $app->router->group([
     require __DIR__.'/../routes/web.php';
 });
 
+// flipbox untuk command artisan laravel ke lumen
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+// jwt
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+// file storage
+$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
 
 return $app;

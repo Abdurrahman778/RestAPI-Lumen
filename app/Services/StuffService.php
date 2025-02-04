@@ -1,7 +1,7 @@
 <?php 
 
 namespace App\Services;
-// memisahkan business logic dengan controller. proses manipulasid dari repositories
+// memisahkan business logic dengan controller. proses manipulasi dari repositories
 
 use App\Repositories\StuffRepository;
 
@@ -36,5 +36,18 @@ class StuffService {
     public function destroy($id)
     {
         return $this->stuffRepository->deleteStuff($id);
+    }
+
+    public function trash()
+    {
+        return $this->stuffRepository->getTrash();
+    }
+
+    public function restore($id) {
+        return $this->stuffRepository->restoreStuff($id);
+    }
+
+    public function permanentDelete($id) {
+        return $this->stuffRepository->deletePermanently($id);
     }
 }

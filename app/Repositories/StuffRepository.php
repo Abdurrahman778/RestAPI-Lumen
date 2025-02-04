@@ -32,4 +32,19 @@ class StuffRepository
     {
         return Stuff::where('id',$id)->delete();
     }
+
+    public function getTrash() {
+        return Stuff::onlyTrashed()->get();
+    }
+
+    public function restoreStuff($id) {
+        $restore = Stuff::onlyTrashed()->where('id',$id)->restore();
+        return Stuff::find($id);
+    }
+
+    public function deletePermanently($id) {
+        $delete = Stuff::onlyTrashed()->where('id',$id)->forceDelete();
+        return Stuff::find($id);
+    }
+
 }
