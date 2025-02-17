@@ -21,4 +21,16 @@ class Stuff extends Model
     public const HTL_KLN = 'HTL/KLN';
     public const LAB = 'Lab';
     public const SARPRAS = 'sarpras';
+
+    public function inbound() {
+        return $this->hasMany(InboundStuff::class);
+    }
+
+    public function stock() {
+        return $this->hasOne(StuffStock::class);
+    }
+
+    public function lending() {
+        return $this->hasMany(Lending::class);
+    }
 }

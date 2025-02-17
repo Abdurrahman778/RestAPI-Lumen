@@ -33,6 +33,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public const ADMIN = 'admin';
     public const STAFF = 'staff';
 
+    public function lending()
+    {
+        return $this->hasMany(Lending::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

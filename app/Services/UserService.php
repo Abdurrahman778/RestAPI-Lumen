@@ -47,6 +47,7 @@ class UserService
         return Auth::user();
     }
 
+
     public function logout() {
         return Auth::logout();
     }

@@ -35,10 +35,17 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('/', 'UserController@index');
         $router->post('/', 'UserController@store');
         $router->get('/me', 'UserController@me');
+
     });
 
     $router->group(['prefix' => 'inbound-stuffs'], function() use ($router){
         $router->post('/', 'InboundStuffController@store');
+        $router->delete('/{id}', 'InboundStuffController@delete');
+    });
+
+    $router->group(['prefix' => 'lendings'], function() use ($router){
+        $router->post('/', 'LendingController@store');
+        $router->delete('/{id}', 'LendingController@delete');
     });
 
     $router->get('/logout', 'UserController@logout');
